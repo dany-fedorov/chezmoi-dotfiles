@@ -1,0 +1,43 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Dany Fedorov
+	email = 2d4kda@gmail.com
+
+[alias]
+  # basic aliases
+
+  a   = add
+  au  = add -uv
+  br  = branch
+  c   = commit
+  co  = checkout --recurse-submodules # https://git-scm.com/book/en/v2/Git-Tools-Submodules
+  co0 = checkout HEAD --
+  d   = diff
+  ds  = diff --stat
+  h   = help
+  m   = merge
+  mt  = mergetool
+  pl  = pull
+  p   = push
+  pforce = push --force
+  rb  = rebase
+  rs  = reset
+  rv  = revert
+  sh  = stash
+  st  = status
+
+  # the plainest one
+  l  = log --topo-order --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s %C(red)%d'
+
+[core]
+  editor = vim
+	autocrlf = false
+
+[merge]
+  tool = kdiff3
+
+[diff]
+  tool = kdiff3
+[init]
+	defaultBranch = main

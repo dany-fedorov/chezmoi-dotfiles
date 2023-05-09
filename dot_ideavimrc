@@ -1,0 +1,10 @@
+set surround
+set clipboard+=unnamed
+let mapleader="\"
+set easymotion
+set ideajoin
+set commentary
+set ignorecase
+set multicursor
+
+map <leader>r <Action>(Replace)
