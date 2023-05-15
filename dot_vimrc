@@ -79,7 +79,7 @@ let g:onedark_color_overrides = {
 \ "black": {"gui": "#090a0c", "cterm": "232", "cterm16": "0" },
 \}
 set background=dark
-" colorscheme onedark
+colorscheme onedark
 " Nerd tree
 let NERDTreeShowHidden=1
 map <C-n> :NERDTreeToggle<CR>
