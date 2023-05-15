@@ -29,5 +29,5 @@ export LC_CTYPE="en_US.UTF-8"
 
 KEEP_MR01_CLI_AC_BASH_SETUP_PATH=/home/df/.cache/keep-mr01-cli/autocomplete/bash_setup && test -f $KEEP_MR01_CLI_AC_BASH_SETUP_PATH && source $KEEP_MR01_CLI_AC_BASH_SETUP_PATH; # keep-mr01-cli autocomplete setup
 
-# Original
-
+VOLTA_HOME="$HOME/.volta"
+PATH="$PATH:$VOLTA_HOME/bin"
