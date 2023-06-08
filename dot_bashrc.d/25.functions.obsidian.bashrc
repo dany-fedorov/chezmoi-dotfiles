@@ -84,18 +84,23 @@ thisdaygoto() {
   if [[ "$year_num" = "$cur_year_num" && "$week_num" -ge "$cur_week_num" ]]; then
     __obs_new_append "$vault" "${OBSIDIAN_DAILY_LOG_CURRENT_WEEK_PATH}/$(date -d "$input" +'%d %b %y')" &
   else
-  local -r vault_path="$(__get_vault_path)"
+    local -r vault_path="$(__get_vault_path)"
     __obs_new_append "$vault" "${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}/y-${year_num}/w-${week_num}/$(date -d "$input" +'%d %b %y')" &
   fi
 }
 
 thisdaycd() {
-#  local -r vault="$(__get_vault_name)"
+  local -r vault="$(__get_vault_name)"
   local -r vault_path="$(__get_vault_path)"
-  cd "${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}"
+  cd "$vault_path/$vault"
 }
 
 thisvault() {
+  local -r vault="$(__get_vault_name)"
+  __obs_open_vault "$vault" &
+}
+
+thisvaultcd() {
   local -r vault="$(__get_vault_name)"
   __obs_open_vault "$vault" &
 }
@@ -178,13 +183,16 @@ thisorganize_daily() {
   local cur_week_num="$(date "+%W")"
   echo "- Current year: $cur_year_num"
   echo "- Current week: $cur_week_num"
+  echo "week_cur_dir: $week_cur_dir"
   for file_path in "${week_cur_dir}/"*; do
     local filename="$(basename "$file_path")"
     local filename_date="${filename%%.md}"
     local year_num="$(date "+%Y" -d "$filename_date")"
     local week_num="$(date "+%W" -d "$filename_date")"
+    echo "- week_num: $week_num"
+    echo "- year_num: $year_num"
     if [[ "$year_num" = "$cur_year_num" && "$week_num" = "$cur_week_num" ]]; then
-      break
+      continue
     fi
     echo "- Move to y-${year_num}/w-${week_num}"
     local week_num_dir="${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}/y-${year_num}/w-${week_num}"
