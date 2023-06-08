@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Dany Fedorov
-	email = 2d4kda@gmail.com
+	email = fedorov.dda@gmail.com
 
 [alias]
   # basic aliases
@@ -26,6 +26,7 @@
   rv  = revert
   sh  = stash
   st  = status
+  s   = status --short
 
   # the plainest one
   l  = log --topo-order --pretty=format:'%C(yellow)%h %C(cyan)%cn %C(blue)%cr%C(reset) %s %C(red)%d'
@@ -41,3 +42,14 @@
   tool = kdiff3
 [init]
 	defaultBranch = main
+[safe]
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01
+	directory = /__w/keep-monorepo-01/keep-monorepo-01

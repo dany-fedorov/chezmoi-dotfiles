@@ -2,7 +2,7 @@
 
 # This file is to be sourced
 
-declare -r DEFAULT_OBSIDIAN_VAULTS_PATH="$HOME/hdd/obsidian/vaults/default-3"
+declare -r DEFAULT_OBSIDIAN_VAULTS_PATH="$HOME/wd/obsidian/vaults"
 declare -r DEFAULT_OBSIDIAN_VAULT='default-3'
 
 declare -r OBSIDIAN_DAILY_PATH='daily'
@@ -58,9 +58,41 @@ __obs_search() {
   obs "obsidian://search?vault=$(__urlencode "$vault")&query=$(__urlencode "$query")"
 }
 
-thisday() {
+thisday_old() {
   local -r vault="$(__get_vault_name)"
   __obs_new_append "$vault" "${OBSIDIAN_DAILY_LOG_CURRENT_WEEK_PATH}/$(date +%F)" &
+}
+
+thisday() {
+  local -r input="$1"
+  if [[ "$input" = '' ]]; then
+    thisdaygoto
+  else
+    thisdaygoto "$input"
+  fi
+}
+
+thisdaygoto() {
+  local -r vault="$(__get_vault_name)"
+  local -r input="$1"
+  local cur_year_num="$(date "+%y")"
+  local cur_week_num="$(date "+%W")"
+  local year_num="$(date -d "$input" +'%y')"
+  local week_num="$(date -d "$input" +'%W')"
+  echo "Cur year - week - date: $cur_year_num - $cur_week_num - $(date -d "$input" +'%D')"
+  echo "Arg year - week - date: $year_num - $week_num - $(date -d "$input" +'%D')"
+  if [[ "$year_num" = "$cur_year_num" && "$week_num" -ge "$cur_week_num" ]]; then
+    __obs_new_append "$vault" "${OBSIDIAN_DAILY_LOG_CURRENT_WEEK_PATH}/$(date -d "$input" +'%d %b %y')" &
+  else
+  local -r vault_path="$(__get_vault_path)"
+    __obs_new_append "$vault" "${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}/y-${year_num}/w-${week_num}/$(date -d "$input" +'%d %b %y')" &
+  fi
+}
+
+thisdaycd() {
+#  local -r vault="$(__get_vault_name)"
+  local -r vault_path="$(__get_vault_path)"
+  cd "${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}"
 }
 
 thisvault() {
@@ -93,6 +125,10 @@ thistrack() {
   __obs_new_append "$vault" "${OBSIDIAN_TRACK_LOG_CURRENT_WEEK_PATH}/$(date +%F)-track" &
 }
 
+# thistrack2() {
+#   __obs_new_append "$vault" "${OBSIDIAN_TRACK_LOG_CURRENT_WEEK_PATH}/$(date +'%d %b %y')-track" &
+# }
+
 thistrack-yesterday() {
   __obs_new_append "$vault" "${OBSIDIAN_TRACK_LOG_CURRENT_WEEK_PATH}/$(date -d 'yesterday' +%F)-track" &
 }
@@ -111,6 +147,28 @@ thisproj() {
 thisprojindex() {
   local -r vault="$(__get_vault_name)"
   __obs_new_append "$vault" "proj/index" &
+}
+
+thisorganize_daily_old() {
+  local -r vault_path="$(__get_vault_path)"
+  local -r week_cur_dir="${vault_path}/${OBSIDIAN_DAILY_LOG_CURRENT_WEEK_PATH}"
+  local cur_year_num="$(date "+%Y")"
+  local cur_week_num="$(date "+%W")"
+  echo "- Current year: $cur_year_num"
+  echo "- Current week: $cur_week_num"
+  for file_path in "${week_cur_dir}/"*; do
+    local filename="$(basename "$file_path")"
+    local filename_date="${filename%%.md}"
+    local year_num="$(date "+%Y" -d "$filename_date")"
+    local week_num="$(date "+%W" -d "$filename_date")"
+    if [[ "$year_num" = "$cur_year_num" && "$week_num" = "$cur_week_num" ]]; then
+      break
+    fi
+    echo "- Move to y-${year_num}/w-${week_num}"
+    local week_num_dir="${vault_path}/${OBSIDIAN_DAILY_LOG_PATH}/y-${year_num}/w-${week_num}"
+    mkdir -p "$week_num_dir"
+    mv -v "${week_cur_dir}/${filename}" "${week_num_dir}/${filename}"
+  done
 }
 
 thisorganize_daily() {

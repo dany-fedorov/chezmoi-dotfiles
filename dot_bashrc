@@ -31,3 +31,5 @@ KEEP_MR01_CLI_AC_BASH_SETUP_PATH=/home/df/.cache/keep-mr01-cli/autocomplete/bash
 
 VOLTA_HOME="$HOME/.volta"
 PATH="$PATH:$VOLTA_HOME/bin"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

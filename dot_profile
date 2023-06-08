@@ -26,5 +26,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "/home/linuxbrew/.linuxbrew/bin" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+fi
+
 
 . $HOME/.env-setup.sh
