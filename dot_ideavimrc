@@ -6,5 +6,6 @@ set ideajoin
 set commentary
 set ignorecase
 set multicursor
+set visualbell
 
 map <leader>r <Action>(Replace)
