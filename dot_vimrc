@@ -66,7 +66,11 @@ highlight LineNr ctermfg=grey
 " Enable mouse
 set mouse=a
 " Make copy/paste go through the + register
-set clipboard=unnamedplus
+if has('mac')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
 " Remove the menubar
 set guioptions-=m
 " Remove the toolbar
