@@ -61,3 +61,7 @@ readonly DF_DROPBOX_PATH="$HOME/Dropbox"
 export DF_DROPBOX_PATH
 
 export KEEP_BUILD_UTILS_HOME="/home/df/wd/geniusee/keep/keep-build-image"
+
+if [[ "$OSTYPE" = "darwin"* && $(whoami) = 'danylofedorov' ]]; then
+  export CLICOLOR=1 
+fi

@@ -35,5 +35,5 @@ PATH="$PATH:$VOLTA_HOME/bin"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [[ "$OSTYPE" = "darwin"* && $(whoami) = "danylofedorov" ]]; then
-  . .env-setup.sh
+  . $HOME/.env-setup.sh
 fi
