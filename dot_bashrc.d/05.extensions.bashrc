@@ -13,7 +13,8 @@ if [[ "$DF_THIS_MATHINE" = 'home2' ]]; then
   [[ -s /home/df/.autojump/etc/profile.d/autojump.sh ]] && source /home/df/.autojump/etc/profile.d/autojump.sh
   unset -f jo
 else
-  . /usr/share/autojump/autojump.bash
+  [[ -e /opt/homebrew/etc/profile.d/autojump.sh ]] && . /opt/homebrew/etc/profile.d/autojump.sh
+  [[ -e /usr/share/autojump/autojump.bash ]] && . /usr/share/autojump/autojump.bash
 fi
 unset -f jo
 # curl https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.bash > ~/fzf-completion.bash
