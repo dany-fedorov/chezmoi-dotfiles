@@ -13,7 +13,7 @@ declare -r OBSIDIAN_TRACK_LOG_PATH="${OBSIDIAN_TRACK_PATH}/log"
 declare -r OBSIDIAN_TRACK_LOG_CURRENT_WEEK_PATH="${OBSIDIAN_TRACK_PATH}/w-current"
 
 __here_date() {
-  if [[ "$OSTPYE" = 'darwin'* ]]; then
+  if [[ "$OSTYPE" = 'darwin'* ]]; then
     gdate "$@"
   else
     date "$@"
