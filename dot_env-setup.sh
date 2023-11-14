@@ -29,6 +29,10 @@ elif [ "$(whoami)" = 'dfedorov' ]; then
   DF_THIS_MACHINE=work2
   DF_CONFIGS=~/df-configs
   DF_LOCAL_CONFIGS=~/sensitive-configs
+elif [[ "$OSTYPE" = "darwin"* && $(whoami) = 'danylofedorov' ]]; then
+  DF_THIS_MACHINE=work-bm
+  # DF_CONFIGS=~/df-configs
+  # DF_LOCAL_CONFIGS=~/sensitive-configs
 # elif [ "$(whoami)" = 'ubuntu' ]; then
 #   DF_THIS_MACHINE=work2
 #   DF_CONFIGS=~/df-configs
