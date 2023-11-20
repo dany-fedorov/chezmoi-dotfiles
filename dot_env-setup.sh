@@ -37,13 +37,20 @@ elif [[ "$OSTYPE" = "darwin"* && $(whoami) = 'danylofedorov' ]]; then
 #   DF_THIS_MACHINE=work2
 #   DF_CONFIGS=~/df-configs
 #   DF_LOCAL_CONFIGS=~/sensitive-configs
+  OBSIDIAN_VALUTS_PATH="/Users/danylofedorov/Documents/obsidian-vaults"
+  PATH="$PATH:/opt/homebrew/opt/libpq/bin"
 fi
 readonly DF_CONFIGS
 readonly DF_LOCAL_CONFIGS
 readonly DF_THIS_MACHINE
 
-export SUDO_EDITOR=gvim
-export EDITOR=gvim
+if [[ "$OSTYPE" = "darwin"* && $(whoami) = 'danylofedorov' ]]; then
+  export SUDO_EDITOR=vim
+  export EDITOR=vim
+else
+  export SUDO_EDITOR=gvim
+  export EDITOR=gvim
+fi
 # export BROWSER=firefox
 export BROWSER=google-chrome
 export TERMINAL=gnome-terminal
@@ -67,5 +74,5 @@ export DF_DROPBOX_PATH
 export KEEP_BUILD_UTILS_HOME="/home/df/wd/geniusee/keep/keep-build-image"
 
 if [[ "$OSTYPE" = "darwin"* && $(whoami) = 'danylofedorov' ]]; then
-  export CLICOLOR=1 
+  export CLICOLOR=1
 fi
