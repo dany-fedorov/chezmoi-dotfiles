@@ -151,7 +151,8 @@ thisproj() {
   local -r filename_param="$@"
   local -r filename_0=$(__this_make_filename "$filename_param")
   if [[ "$filename_0" = "" ]]; then
-    __obs_search "$vault" "proj/" &
+#     __obs_search "$vault" "proj/" &
+    ls -1 "${DEFAULT_OBSIDIAN_VAULTS_PATH}/${DEFAULT_OBSIDIAN_VAULT}/proj"
   else
     __obs_new_append "$vault" "proj/${filename_0}" &
   fi

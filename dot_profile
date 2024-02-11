@@ -32,3 +32,4 @@ fi
 
 
 . $HOME/.env-setup.sh
+. "$HOME/.cargo/env"

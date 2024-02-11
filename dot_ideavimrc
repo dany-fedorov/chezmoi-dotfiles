@@ -1,5 +1,5 @@
 set surround
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 let mapleader="\"
 set easymotion
 set ideajoin
